@@ -52,6 +52,7 @@ app.post("/login", async (req, res) => {
     const check = await collection.findOne({ name: req.body.username });
     if (!check) {
       res.send("user name cannot found");
+      return;
     }
 
     const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
